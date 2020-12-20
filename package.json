@@ -4,7 +4,7 @@
   "description": "a simple typing test",
   "main": "index.js",
   "scripts": {
-    "start": "clear && echo \"Starting project :)\ninitializing vue...\" && node ./src/main.js&& echo \"starting server...\" && node index.js"
+    "start": "node index.js && node main.js"
   },
   "repository": {
     "type": "git",
