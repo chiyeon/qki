@@ -3,22 +3,18 @@ const passage = document.getElementById("passage");
 const timer = document.getElementById("timer");
 const results =  document.getElementById("results");
 //"Do you like monkeys? I particularily enjoy the company of monkeys, in fact I much prefer them over that of the human touch.";
-var passageText = "I like men.";
-var words = passageText.split(" ");
+var passageText = "While we were having fun, we didn't realize what we were really doing: making memories we'd look back upon.";
+var passageAuthor;
+var words;
 var currentWord = 0;
 var timerRunning = false;
 var currentTime = 0;
-
-var startTime = Date.now();
-
-var interval = setInterval(function() {
-    
-}, 100);
+var startTime;
 
 function CompletePassage() {
    input.placeholder = "";
 
-   results.innerHTML = `passage length: ${words.length} words<br>time: ${currentTime} seconds<br>score: ${Math.round(words.length/(currentTime/60))} wpm`
+   results.innerHTML = `passage length: ${words.length} words<br>time: ${currentTime} seconds<br>score: ${Math.round(words.length/(currentTime/60))} wpm<br>quote by ${passageAuthor}.<br>courtesy of type.fit/api/quotes`;
 }
 
 function Update() {
@@ -46,8 +42,30 @@ function Update() {
       timer.innerHTML = currentTime;
    }
 
+   for(var i = 0; i < input.value.length; i++) {
+      if(input.value[i] != nextWord[i]) {
+         // change color of mark to red
+         passage.getElementsByTagName("mark")[0].style.backgroundColor = "#e05141";
+      } else {
+         passage.getElementsByTagName("mark")[0].style.backgroundColor = "#ffd369";
+      }
+   }
+
    if(input.value == nextWord) {
       NextWord();
+   }
+}
+
+function HighlightCurrentWord() {
+   passage.innerHTML = "";
+   for(var i = 0; i < words.length; i++) {
+      if(i == currentWord)
+         passage.innerHTML += `<mark>${words[i]}</mark>`;
+      else {
+         passage.innerHTML += words[i];
+      }
+      if(i != words.length - 1)
+         passage.innerHTML += " ";
    }
 }
 
@@ -55,8 +73,18 @@ function NextWord() {
    currentWord++;
    input.placeholder = words[currentWord];
    input.value = "";
+   HighlightCurrentWord();
 }
 
-input.placeholder = words[currentWord];
-passage.textContent = passageText;
-setInterval(Update, 1000/100);
+fetch('https://type.fit/api/quotes')
+.then(response => response.json())
+.then(function(data) {
+   var quote = data[Math.floor(Math.random() * data.length)];
+
+   passageAuthor = quote.author;
+   passageText = quote.text;
+   words = passageText.split(" ");
+   input.placeholder = words[currentWord];
+   HighlightCurrentWord();
+   interval = setInterval(Update, 1000/100);
+});

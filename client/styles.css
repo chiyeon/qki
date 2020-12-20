@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&display=swap');
+
+* {
+   margin: 0;
+   font-family: 'Overpass Mono', monospace;
+}
+
+body {
+   background-color: #222831;
+}
+
+#panel-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   width: 100vw;
+   height: 100vh;
+}
+
+#panel {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+
+   width: 60%;
+}
+
+#restart-button {
+   padding: 1.5%;
+   border: none;
+   background-color: #ffd369;
+   color: #222831;
+}
+
+#passage-container {
+   padding: 3%;
+}
+
+#passage {
+   color: #ffd369;
+   font-size: 3vmin;
+}
+
+#passage > mark {
+   background-color: #ffd369;
+   color: #222831;
+}
+
+#timer, #results {
+   color: #eeeeee;
+   padding: 2%;
+   text-align: center;
+}
+
+#input {
+   color: #ffd369;
+   border: none;
+   background-color: #393e46;
+   font-size: 2.5vmin;
+   width: 35%;
+}
