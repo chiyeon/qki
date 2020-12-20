@@ -76,15 +76,20 @@ function NextWord() {
    HighlightCurrentWord();
 }
 
-fetch('https://type.fit/api/quotes')
-.then(response => response.json())
-.then(function(data) {
-   var quote = data[Math.floor(Math.random() * data.length)];
+function NewQuote() {
+   fetch('https://type.fit/api/quotes')
+   .then(response => response.json())
+   .then(function(data) {
+      var quote = data[Math.floor(Math.random() * data.length)];
 
-   passageAuthor = quote.author;
-   passageText = quote.text;
-   words = passageText.split(" ");
-   input.placeholder = words[currentWord];
-   HighlightCurrentWord();
-   interval = setInterval(Update, 1000/100);
-});
+      passageAuthor = quote.author;
+      passageText = quote.text;
+      words = passageText.split(" ");
+      input.value = "";
+      input.placeholder = words[currentWord];
+      HighlightCurrentWord();
+      interval = setInterval(Update, 1000/100);
+   });
+}
+
+NewQuote();
