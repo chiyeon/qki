@@ -4,7 +4,7 @@
   "description": "a simple typing test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "clear && echo \"Starting project :)\ninitializing vue...\" && node ./src/main.js&& echo \"starting server...\" && node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/chiyeon/qki/issues"
   },
-  "homepage": "https://github.com/chiyeon/qki#readme"
+  "homepage": "https://github.com/chiyeon/qki#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "vue": "^2.6.12"
+  }
 }
