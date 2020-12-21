@@ -94,11 +94,6 @@ body {
    width: 60%;
 }
 
-#cursor {
-   position: absolute;
-   font-size: 3vmin;
-}
-
 #passage {
    color: #ffd369;
    font-size: 3vmin;
@@ -154,5 +149,5 @@ body {
    background-color: #393e46;
    font-size: 2.75vmin;
    width: auto;
-   padding: 1%;
+   padding: 1.5vmin;
 }
