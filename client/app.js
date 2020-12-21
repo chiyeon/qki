@@ -26,20 +26,14 @@ function CompletePassage() {
    results.childNodes[2].innerHTML += `${currentTime} seconds`;
    results.childNodes[4].innerHTML += `${Math.round(words.length/(currentTime/60))} wpm`;
    results.childNodes[6].innerHTML += `${passageAuthor == null ? "unknown" : passageAuthor}<br><p>courtesy of type.fit/api/quotes</p>`;
-   //passageAuthor == undefined ? "unknown" : 
-   console.log(results.length);
 }
 
 function Update() {
-   if(currentWord == words.length) {
+   if(currentWord >= words.length) {
       timerRunning = false;
       CompletePassage();
       clearInterval(updateIntervalID);
    }
-
-   var nextWord =  words[currentWord];
-   if(currentWord != words.length -  1)
-      nextWord += " ";
 
    if(currentWord == 0 && !timerRunning) {
       if(input.value != "") {
@@ -47,6 +41,13 @@ function Update() {
          startTime = Date.now();
       }
    }
+
+   if(!timerRunning)
+      return;
+
+   var nextWord =  words[currentWord];
+   if(currentWord != words.length -  1)
+      nextWord += " ";
 
    if(timerRunning) {
       var elapsedTime = Date.now() - startTime;
