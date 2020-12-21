@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;600;700&display=swap');
 
 @keyframes spin {
    from {
@@ -28,13 +28,24 @@ body {
    height: 100vh;
 }
 
-#panel {
+.panel {
+   width: 100%;
    display: flex;
-   align-items: center;
    justify-content: center;
-   flex-direction: column;
+   align-items: center;
+}
 
-   width: 60%;
+#top {
+   flex: auto;
+}
+
+#middle {
+   height: 25%;
+}
+
+#bottom {
+   flex: auto;
+   flex-direction: column;
 }
 
 #restart-button {
@@ -45,7 +56,6 @@ body {
 
    border: none;
    background-color: #ffd369;
-   color: #222831;
    width: 5vmin;
    height: 5vmin;
 
@@ -64,7 +74,12 @@ body {
 }
 
 #passage-container {
-   padding: 3%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+
+   width: 60%;
 }
 
 #cursor {
@@ -81,20 +96,41 @@ body {
    color: #222831;
 }
 
-#timer, #results {
+#timer {
    color: #eeeeee;
    padding: 2%;
-   text-align: center;
+}
+
+#results-container {
+   position: absolute;
+   width: 100%;
+   height: auto;
+   display: flex; 
+   justify-content: center;
+   align-items: center;
+}
+
+#results {
+   width: auto;
+   height: auto;
+   color: #eeeeee;
+   opacity: 0;
+}
+
+#results > div > h2  {
+   color: #ffd369;
+   font-size: 125%;
+}
+
+#results > div > p {
+   font-size: 75%;
+   color: #393e46;
 }
 
 #input {
    color: #ffd369;
    border: none;
    background-color: #393e46;
-   font-size: 2.5vmin;
-   width: 35%;
-}
-
-#results-container {
-   position: absolute;
+   font-size: 2.75vmin;
+   width: 15%;
 }

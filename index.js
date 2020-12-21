@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const app = express();
-var port = 5000;
+var port = 25567;
 
 app.use(express.static(path.join(__dirname, "client")));
 

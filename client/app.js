@@ -1,4 +1,4 @@
-const panel = document.getElementById("panel");
+const passageContainer = document.getElementById("passage-container");
 const input = document.getElementById("input");
 const passage = document.getElementById("passage");
 const timer = document.getElementById("timer");
@@ -11,21 +11,29 @@ var currentWord = 0;
 var timerRunning = false;
 var currentTime = 0;
 var startTime;
+var updateIntervalID;
 
 function CompletePassage() {
+   if(input.placeholder == "")
+      return;
    input.placeholder = "";
-   panel.style.opacity = 0;
+   passageContainer.style.opacity = 0;
    results.style.opacity = 1;
 
-   results.innerHTML = `passage length: ${words.length} words<br>time: ${currentTime} seconds<br>score: ${Math.round(words.length/(currentTime/60))} wpm<br>quote by ${passageAuthor}.<br>courtesy of type.fit/api/quotes`;
+   //results.innerHTML = `<p><color="#ffd369">passage length:</color></p> ${words.length} words<br><color="#ffd369">time:</color> ${currentTime} seconds<br><color="#ffd369">score:</color> ${Math.round(words.length/(currentTime/60))} wpm<br><color="#ffd369">quote by</color> ${passageAuthor == null ? "unknown" : passageAuthor}.<br>courtesy of type.fit/api/quotes`;
+   results.childNodes[0].innerHTML += `${words.length} words`;
+   results.childNodes[2].innerHTML += `${currentTime} seconds`;
+   results.childNodes[4].innerHTML += `${Math.round(words.length/(currentTime/60))} wpm`;
+   results.childNodes[6].innerHTML += `${passageAuthor}<br><p>courtesy of type.fit/api/quotes</p>`;
+   //passageAuthor == undefined ? "unknown" : 
+   console.log(results.length);
 }
 
 function Update() {
    if(currentWord == words.length) {
       timerRunning = false;
-      clearInterval(interval);
       CompletePassage();
-      return;
+      clearInterval(updateIntervalID);
    }
 
    var nextWord =  words[currentWord];
@@ -75,8 +83,8 @@ function HighlightCurrentWord() {
 function NextWord() {
    currentWord++;
    input.placeholder = words[currentWord];
-   input.value = "";
    HighlightCurrentWord();
+   input.value = "";
 }
 
 function NewQuote() {
@@ -85,7 +93,7 @@ function NewQuote() {
    .then(function(data) {
       var quote = data[Math.floor(Math.random() * data.length)];
 
-      panel.style.opacity = 1;
+      passageContainer.style.opacity = 1;
       results.style.opacity = 0;
       passageAuthor = quote.author;
       passageText = quote.text;
@@ -93,12 +101,23 @@ function NewQuote() {
       currentWord = 0;
       input.value = "";
       input.placeholder = words[currentWord];
-      results.textContent = "";
+      results.innerHTML = `<div>
+      <h2>passage length: </h2>
+   </div>
+   <div>
+      <h2>time: </h2>
+   </div>
+   <div>
+      <h2>score: </h2>
+   </div>
+   <div>
+      <h2>quote by: </h2>
+   </div>`;
       timerRunning = false;
       currentTime = 0;
       timer.textContent = "0.0";
       HighlightCurrentWord();
-      interval = setInterval(Update, 1000/100);
+      updateIntervalID = setInterval(Update, 1000/100);
    });
 }
 

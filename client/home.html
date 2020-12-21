@@ -11,17 +11,34 @@
 <body>
    <div id="app">
       <div id="panel-container">
-         <button id="restart-button" onclick="NewQuote()"><img src="restart-icon.svg" /></button>
-         <div id="panel">
+         <div id="top" class="panel">
+            <button id="restart-button" onclick="NewQuote()"><img src="restart-icon.svg" /></button>
+         </div>
+         <div id="middle" class="panel">
             <div id="passage-container">
-               <p id="cursor">|</p>
-               <p id="passage"></p>
+               <!--p id="cursor">|</p-->
+               <p id="passage">Loading passage...</p>
             </div>
+         </div>
+         <div id="bottom" class="panel">
             <input id="input"></input>
             <p id="timer">0.0</p>
          </div>
          <div id="results-container">
-            <p id="results"></p>
+            <div id="results">
+               <div>
+                  <h2>passage length: </h2>
+               </div>
+               <div>
+                  <h2>time: </h2>
+               </div>
+               <div>
+                  <h2>score: </h2>
+               </div>
+               <div>
+                  <h2>quote by: </h2>
+               </div>
+            </div>
          </div>
       </div>
    </div>
