@@ -4,7 +4,7 @@
   "description": "a simple typing test",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js && node main.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
