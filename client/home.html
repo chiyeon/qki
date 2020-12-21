@@ -11,13 +11,16 @@
 <body>
    <div id="app">
       <div id="panel-container">
+         <button id="restart-button" onclick="NewQuote()"><img src="restart-icon.svg" /></button>
          <div id="panel">
-            <button id="restart-button" onclick="NewQuote()"><img src="restart-icon.svg" /></button>
             <div id="passage-container">
+               <p id="cursor">|</p>
                <p id="passage"></p>
             </div>
             <input id="input"></input>
             <p id="timer">0.0</p>
+         </div>
+         <div id="results-container">
             <p id="results"></p>
          </div>
       </div>

@@ -1,3 +1,4 @@
+const panel = document.getElementById("panel");
 const input = document.getElementById("input");
 const passage = document.getElementById("passage");
 const timer = document.getElementById("timer");
@@ -13,6 +14,8 @@ var startTime;
 
 function CompletePassage() {
    input.placeholder = "";
+   panel.style.opacity = 0;
+   results.style.opacity = 1;
 
    results.innerHTML = `passage length: ${words.length} words<br>time: ${currentTime} seconds<br>score: ${Math.round(words.length/(currentTime/60))} wpm<br>quote by ${passageAuthor}.<br>courtesy of type.fit/api/quotes`;
 }
@@ -82,11 +85,18 @@ function NewQuote() {
    .then(function(data) {
       var quote = data[Math.floor(Math.random() * data.length)];
 
+      panel.style.opacity = 1;
+      results.style.opacity = 0;
       passageAuthor = quote.author;
       passageText = quote.text;
       words = passageText.split(" ");
+      currentWord = 0;
       input.value = "";
       input.placeholder = words[currentWord];
+      results.textContent = "";
+      timerRunning = false;
+      currentTime = 0;
+      timer.textContent = "0.0";
       HighlightCurrentWord();
       interval = setInterval(Update, 1000/100);
    });
