@@ -40,19 +40,22 @@ body {
 }
 
 #middle {
-   height: 25%;
+   height: 33%;
 }
 
 #bottom {
    flex: auto;
    flex-direction: column;
+   justify-content: flex-start;
 }
 
 #restart-button {
+   user-select: none;
    display: flex;
    align-items: center;
    justify-content: center;
    border-radius: 90px;
+   align-self: flex-end;
 
    border: none;
    background-color: #ffd369;
@@ -60,6 +63,10 @@ body {
    height: 5vmin;
 
    transition: background-color 150ms;
+}
+
+#restart-button > img {
+   max-width: 100%;
 }
 
 #restart-button:hover {
@@ -89,6 +96,7 @@ body {
 #passage {
    color: #ffd369;
    font-size: 3vmin;
+   user-select: none;
 }
 
 #passage > mark {
@@ -119,11 +127,11 @@ body {
 
 #results > div > h2  {
    color: #ffd369;
-   font-size: 125%;
+   font-size: 2.75vmin;
 }
 
 #results > div > p {
-   font-size: 75%;
+   font-size: 1.1vmin;
    color: #393e46;
 }
 
@@ -132,5 +140,5 @@ body {
    border: none;
    background-color: #393e46;
    font-size: 2.75vmin;
-   width: 15%;
+   width: auto;
 }

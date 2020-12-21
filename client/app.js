@@ -17,6 +17,7 @@ function CompletePassage() {
    if(input.placeholder == "")
       return;
    input.placeholder = "";
+   input.opacity = 0;
    passageContainer.style.opacity = 0;
    results.style.opacity = 1;
 
@@ -24,7 +25,7 @@ function CompletePassage() {
    results.childNodes[0].innerHTML += `${words.length} words`;
    results.childNodes[2].innerHTML += `${currentTime} seconds`;
    results.childNodes[4].innerHTML += `${Math.round(words.length/(currentTime/60))} wpm`;
-   results.childNodes[6].innerHTML += `${passageAuthor}<br><p>courtesy of type.fit/api/quotes</p>`;
+   results.childNodes[6].innerHTML += `${passageAuthor == null ? "unknown" : passageAuthor}<br><p>courtesy of type.fit/api/quotes</p>`;
    //passageAuthor == undefined ? "unknown" : 
    console.log(results.length);
 }
@@ -57,9 +58,14 @@ function Update() {
       if(input.value[i] != nextWord[i]) {
          // change color of mark to red
          passage.getElementsByTagName("mark")[0].style.backgroundColor = "#e05141";
+         break;
       } else {
          passage.getElementsByTagName("mark")[0].style.backgroundColor = "#ffd369";
       }
+   }
+
+   if(input.value == "") {
+      passage.getElementsByTagName("mark")[0].style.backgroundColor = "#ffd369";
    }
 
    if(input.value == nextWord) {
@@ -99,6 +105,7 @@ function NewQuote() {
       passageText = quote.text;
       words = passageText.split(" ");
       currentWord = 0;
+      input.opacity = 1;
       input.value = "";
       input.placeholder = words[currentWord];
       results.innerHTML = `<div>
