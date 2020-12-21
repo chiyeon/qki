@@ -94,11 +94,13 @@ function NextWord() {
 }
 
 function NewQuote() {
+   document.getElementById("restart-button").className = "";
+
    fetch('https://type.fit/api/quotes')
    .then(response => response.json())
    .then(function(data) {
       var quote = data[Math.floor(Math.random() * data.length)];
-
+      document.getElementById("restart-button").className = "spin";
       passageContainer.style.opacity = 1;
       results.style.opacity = 0;
       passageAuthor = quote.author;

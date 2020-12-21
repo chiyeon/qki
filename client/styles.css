@@ -14,6 +14,10 @@
    font-family: 'Overpass Mono', monospace;
 }
 
+*:focus {
+   outline: none;
+}
+
 body {
    background-color: #222831;
 }
@@ -74,10 +78,10 @@ body {
    background-color: #d8b25b;
 }
 
-#restart-button:active {
+.spin {
    transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
    animation-name: spin;
-   animation-duration: 500ms;
+   animation-duration: 700ms;
    animation-fill-mode: forwards;
 }
 
@@ -86,12 +90,13 @@ body {
    align-items: center;
    justify-content: center;
    flex-direction: column;
-   transition: opacity 300ms;
+   transition: opacity 700ms;
    width: 60%;
 }
 
 #cursor {
    position: absolute;
+   font-size: 3vmin;
 }
 
 #passage {
