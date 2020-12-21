@@ -108,6 +108,7 @@ function NewQuote() {
       input.opacity = 1;
       input.value = "";
       input.placeholder = words[currentWord];
+      input.focus();
       results.innerHTML = `<div>
       <h2>passage length: </h2>
    </div>

@@ -36,15 +36,16 @@ body {
 }
 
 #top {
-   flex: auto;
+   height: 35%;
 }
 
 #middle {
-   height: 33%;
+   height: 30%;
+   vertical-align: middle;
 }
 
 #bottom {
-   flex: auto;
+   height: 35%;
    flex-direction: column;
    justify-content: flex-start;
 }
@@ -85,7 +86,7 @@ body {
    align-items: center;
    justify-content: center;
    flex-direction: column;
-
+   transition: opacity 300ms;
    width: 60%;
 }
 
@@ -107,6 +108,7 @@ body {
 #timer {
    color: #eeeeee;
    padding: 2%;
+   font-size: 2.5vmin;
 }
 
 #results-container {
@@ -122,16 +124,22 @@ body {
    width: auto;
    height: auto;
    color: #eeeeee;
+   padding: 1%;
    opacity: 0;
+   transition: opacity 500ms;
 }
 
 #results > div > h2  {
    color: #ffd369;
-   font-size: 2.75vmin;
+   font-size: 2.5vmin;
+}
+
+#results > div {
+   font-size: 2vmin;
 }
 
 #results > div > p {
-   font-size: 1.1vmin;
+   font-size: 1.75vmin;
    color: #393e46;
 }
 
@@ -141,4 +149,5 @@ body {
    background-color: #393e46;
    font-size: 2.75vmin;
    width: auto;
+   padding: 1%;
 }
